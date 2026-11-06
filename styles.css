@@ -1,0 +1,170 @@
+:root{
+  --bg:#0f172a; --card:#1e293b; --line:#334155; --text:#e2e8f0; --muted:#94a3b8;
+  --accent:#38bdf8; --accent-ink:#0f172a; --danger:#f87171; --ok:#4ade80;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;
+  padding:calc(12px + env(safe-area-inset-top)) 16px 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+.topbar h1{font-size:1.15rem;margin:0}
+main{padding:16px 16px 96px;max-width:720px;margin:0 auto}
+.tabbar{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabbar button{background:none;border:0;color:var(--muted);padding:14px 4px;font-size:.85rem}
+.tabbar button.active{color:var(--accent);font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.muted{color:var(--muted);font-size:.9rem}
+h2{font-size:1.05rem;margin:0 0 12px}
+label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 4px}
+input,select,textarea{width:100%;padding:11px;border-radius:8px;border:1px solid var(--line);
+  background:var(--bg);color:var(--text);font:inherit}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:12px 16px;font-weight:600;font:inherit;font-weight:600}
+.btn.ghost{background:none;color:var(--text);border:1px solid var(--line)}
+.btn.danger{background:none;color:var(--danger);border:1px solid var(--danger)}
+.btn.small{padding:6px 12px;font-size:.85rem}
+.btn.block{width:100%;margin-top:16px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.seg input{display:none}
+.seg label{margin:0;text-align:center;padding:10px;border:1px solid var(--line);border-radius:8px;color:var(--text)}
+.seg input:checked+label{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.tag{font-size:.75rem;padding:2px 8px;border-radius:99px;border:1px solid var(--line)}
+.tag.tjanst{color:var(--accent);border-color:var(--accent)}
+.tag.privat{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.stats div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.stats b{display:block;font-size:1.2rem}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ok);color:#052e16;
+  padding:10px 16px;border-radius:8px;font-weight:600}
+.err{color:var(--danger);font-size:.9rem;margin-top:8px}
+
+/* --- v2: fleranvändare --- */
+.center{text-align:center}
+.tabbar{grid-template-columns:repeat(5,1fr)}
+.tabbar[hidden]{display:none}
+.tabbar button{font-size:.8rem}
+.topbar .row{gap:8px}
+#userBox{max-width:45vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.auth{max-width:420px;margin:24px auto}
+.links{display:flex;flex-direction:column;gap:10px;margin-top:16px;text-align:center}
+.links a{color:var(--accent);text-decoration:none;font-size:.9rem}
+.ok{color:var(--ok);font-size:.9rem;margin-top:8px}
+.btn:disabled{opacity:.5}
+.toast.bad{background:var(--danger);color:#450a0a}
+.card.warn{border-color:#f59e0b}
+.warn-text{color:#fbbf24;font-size:.85rem;margin-top:4px}
+.trip{cursor:pointer}
+.trip .sub{margin-top:4px}
+.item{padding:10px 0;border-top:1px solid var(--line);align-items:flex-start}
+.item:first-of-type{border-top:0}
+.item.inactive{opacity:.55}
+.actions{display:flex;gap:6px;flex-shrink:0}
+.small-select{width:auto;padding:6px 8px;font-size:.85rem}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+@media (max-width:480px){.grid3{grid-template-columns:1fr}.item{flex-wrap:wrap}}
+
+/* --- Utskrift / PDF --- */
+.print-only{display:none}
+@media print{
+  @page{size:A4 landscape;margin:12mm}
+  html,body{background:#fff;color:#000;font-size:10pt}
+  .no-print,.tabbar,.topbar,.toast{display:none!important}
+  main{padding:0;max-width:none}
+  .print-only{display:block}
+  .p-head h1{font-size:16pt;margin:0 0 4px}
+  .p-head div{margin:2px 0}
+  .p-small{font-size:8pt;color:#555}
+  table{width:100%;border-collapse:collapse;margin-top:12px}
+  th,td{border:1px solid #999;padding:4px 6px;text-align:left;vertical-align:top}
+  th{background:#eee}
+  .p-sum{width:auto}
+  .p-sum tfoot td{font-weight:700}
+  .p-trips tr{page-break-inside:avoid}
+  .p-trips thead{display:table-header-group}
+  .p-sign{display:flex;gap:40px;margin-top:28px}
+}
+.grid2>*,.grid3>*{min-width:0}
+input[type=date],input[type=month]{min-width:0;-webkit-appearance:none;appearance:none}
+
+/* Bred skärm: menyn i toppen */
+@media (min-width:720px){
+  .tabbar{position:static;display:flex;gap:4px;border:0;background:none;padding:0}
+  .tabbar button{padding:8px 14px;border-radius:8px;font-size:.9rem}
+  .tabbar button.active{background:var(--card)}
+  .tabbar[hidden]{display:none}
+  main{padding-bottom:32px}
+}
+
+/* Tydligare meny (mobil) */
+.tabbar{background:#16213a;border-top:2px solid var(--line);box-shadow:0 -4px 16px #0008}
+.tabbar button{display:flex;flex-direction:column;align-items:center;gap:3px;color:#cbd5e1;font-size:.78rem;font-weight:500;padding:10px 2px 12px;border-top:3px solid transparent;margin-top:-2px}
+.tabbar button svg{width:26px;height:26px}
+.tabbar button.active{color:var(--accent);font-weight:700;border-top-color:var(--accent);background:#1e2d4a}
+main{padding-bottom:110px}
+@media (min-width:720px){
+  .tabbar{box-shadow:none;border-top:0;background:none}
+  .tabbar button{flex-direction:row;gap:0;border-top:0;margin-top:0;padding:8px 14px;font-size:.9rem;color:var(--muted);font-weight:500}
+  .tabbar button svg{display:none}
+  .tabbar button.active{background:var(--card);color:var(--accent);font-weight:600}
+  main{padding-bottom:32px}
+}
+
+/* Mobil: menyn under rubriken, fast i toppen */
+@media (max-width:719px){
+  .topbar{flex-wrap:wrap;padding-bottom:0;box-shadow:0 4px 14px #0007}
+  .tabbar{position:static;order:3;flex:0 0 calc(100% + 32px);margin:10px -16px 0;box-shadow:none;border-top:1px solid var(--line);border-bottom:0;background:#16213a}
+  .tabbar button{border-top:0;margin-top:0;border-bottom:3px solid transparent;padding:8px 2px 7px}
+  .tabbar button.active{border-bottom-color:var(--accent);border-top-color:transparent}
+  main{padding-bottom:32px}
+}
+
+/* Dator: snygg meny med ikoner */
+@media (min-width:720px){
+  .topbar{padding-top:calc(10px + env(safe-area-inset-top));padding-bottom:10px;box-shadow:0 4px 14px #0007}
+  .topbar h1{font-size:1.25rem}
+  .tabbar{gap:6px;background:none}
+  .tabbar button{display:flex;flex-direction:row;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid transparent;color:#cbd5e1;font-size:.95rem;font-weight:500;transition:background .15s,color .15s}
+  .tabbar button svg{display:block;width:20px;height:20px}
+  .tabbar button:hover{background:#1e2d4a;color:#fff}
+  .tabbar button.active{background:#1e2d4a;color:var(--accent);font-weight:700;border-color:#2c4a73;box-shadow:inset 0 -3px 0 var(--accent)}
+}
+
+/* Varumärkesrubrik */
+:root{--brand1:#44447d;--brand2:#5b5b9f}
+.brand{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.brand h1{margin:0;font-size:1.1rem;color:#fff;white-space:nowrap}
+.brand small{font-size:.75rem;color:#d4d6f5;margin-top:2px}
+.brand small b{color:#fff}
+.topbar{background:linear-gradient(135deg,var(--brand1),var(--brand2));border-bottom:1px solid #6b6bb0}
+.topbar #userBox{color:#e6e7fb}
+.login-brand{background:linear-gradient(135deg,var(--brand1),var(--brand2));margin:-14px -14px 0;padding:14px;border-radius:12px 12px 0 0}
+@media (max-width:719px){
+  .brand h1{font-size:1rem}
+  #userBox{max-width:34vw}
+}
+
+/* Tillbaka till mörk topp: bara rubriktexten är ny */
+.topbar{background:var(--bg);border-bottom:1px solid var(--line);box-shadow:none}
+.topbar #userBox{color:var(--muted)}
+.brand small{color:var(--muted)}
+.brand small b{color:var(--text)}
+.login-brand{background:none;margin:0;padding:0;border-radius:0}
+.tabbar button{white-space:nowrap}
+@media (min-width:720px) and (max-width:1100px){
+  .tabbar{gap:2px}
+  .tabbar button{padding:9px 11px;gap:6px;font-size:.88rem}
+  .tabbar button svg{width:18px;height:18px}
+  .brand h1{font-size:1rem}
+  #userBox{display:none}
+}
+@media (max-width:719px){
+  .topbar{box-shadow:none}
+  .tabbar{background:#16213a}
+}
+
+/* Dialogruta (appen) */
+.modal{position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;padding:16px;z-index:30}
+.modal .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;width:100%;max-width:460px;max-height:92vh;overflow:auto}
+.btnrow{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}

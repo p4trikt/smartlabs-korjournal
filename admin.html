@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Körjournal – SmartLabs Ai™ – Admin</title>
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="adm">
+<div id="shell" hidden>
+  <aside class="side no-print">
+    <div class="brand"><h1>Körjournal – SmartLabs Ai™</h1><small>Licensierad till <b>Skånebutiken</b></small></div>
+    <div class="adm-label">Admin</div>
+    <nav id="nav">
+      <a href="#overview" data-p="overview">Översikt</a>
+      <a href="#trips" data-p="trips">Resor</a>
+      <a href="#drivers" data-p="drivers">Förare <span id="pendBadge" class="badge" hidden></span></a>
+      <a href="#vehicles" data-p="vehicles">Fordon</a>
+    </nav>
+    <div class="side-foot"><div id="who" class="muted"></div><a href="./" class="muted">Till appen</a><button class="btn small ghost" id="out">Logga ut</button></div>
+  </aside>
+  <main id="page"></main>
+</div>
+<div id="login"></div>
+<div id="modal" class="modal no-print" hidden></div>
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>
